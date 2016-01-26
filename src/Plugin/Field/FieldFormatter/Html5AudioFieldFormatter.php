@@ -62,7 +62,8 @@ class Html5AudioFieldFormatter extends FormatterBase {
     // Render all field values as part of a single <audio> tag.
     $sources = array();
     foreach ($items as $delta => $item) {
-      // Get the mime type.
+      // Get the mime type. This method for calling a service is **not** using
+      // dependency injection.
       $mimetype = \Drupal::service('file.mime_type.guesser')->guess($item->uri);
       $sources[] = array(
         'src' => $item->uri,
