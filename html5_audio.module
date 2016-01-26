@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains html5_audio.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function html5_audio_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the html5_audio module.
+    case 'help.page.html5_audio':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('HTML5 audio field formatter for link fields.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function html5_audio_theme() {
+  return array(
+    'html5_audio' => array(
+      'variables' => array('sources' => NULL),
+    ),
+  );
+}
