@@ -2,6 +2,6 @@ name: HTML5 Audio
 type: module
 description: HTML5 audio field formatter for link fields.
 core: 8.x
-package: DrupalEasy
+package: Custom
 dependencies:
   - link
