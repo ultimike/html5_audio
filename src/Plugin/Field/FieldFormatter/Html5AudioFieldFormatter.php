@@ -73,7 +73,7 @@ class Html5AudioFieldFormatter extends FormatterBase {
 
    // Put everything in an array for theming.
     $elements[] = array(
-      '#theme' => 'html5_audio',
+      '#theme' => 'audio_tag',
       '#sources' => $sources,
     );
 

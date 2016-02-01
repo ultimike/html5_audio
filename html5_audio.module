@@ -28,7 +28,7 @@ function html5_audio_help($route_name, RouteMatchInterface $route_match) {
  */
 function html5_audio_theme() {
   return array(
-    'html5_audio' => array(
+    'audio_tag' => array(
       'variables' => array('sources' => NULL),
     ),
   );
