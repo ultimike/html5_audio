@@ -29,7 +29,10 @@ function html5_audio_help($route_name, RouteMatchInterface $route_match) {
 function html5_audio_theme() {
   return array(
     'audio_tag' => array(
-      'variables' => array('sources' => NULL, 'autoplay' => ''),
+      'variables' => array(
+        'sources' => NULL,
+        'autoplay' => '',
+      ),
     ),
   );
 }
