@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\html5_audio\Plugin\Field\FieldFormatter\Html5AudioFieldFormatter.
- */
-
 namespace Drupal\html5_audio\Plugin\Field\FieldFormatter;
 
 use Drupal\Component\Utility\Html;
@@ -25,22 +20,23 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class Html5AudioFieldFormatter extends FormatterBase {
+
   /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       // Implement default settings.
-    ) + parent::defaultSettings();
+    ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return array(
+    return [
       // Implement settings form.
-    ) + parent::settingsForm($form, $form_state);
+    ] + parent::settingsForm($form, $form_state);
   }
 
   /**
@@ -53,31 +49,32 @@ class Html5AudioFieldFormatter extends FormatterBase {
     return $summary;
   }
 
-/**
+  /**
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
 
-    // Render all field values as part of a single <audio> tag.
-    $sources = array();
     foreach ($items as $delta => $item) {
-      // Get the mime type. This method for calling a service is **not** using
-      // dependency injection.
-      $mimetype = \Drupal::service('file.mime_type.guesser')->guess($item->uri);
-      $sources[] = array(
-        'src' => $item->uri,
-        'mimetype' => $mimetype,
-      );
-   }
+      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+    }
 
-   // Put everything in an array for theming.
-    $elements[] = array(
-      '#theme' => 'audio_tag',
-      '#sources' => $sources,
-    );
+    return $elements;
+  }
 
-   return $elements;
+  /**
+   * Generate the output appropriate for one field item.
+   *
+   * @param \Drupal\Core\Field\FieldItemInterface $item
+   *   One field item.
+   *
+   * @return string
+   *   The textual output generated.
+   */
+  protected function viewValue(FieldItemInterface $item) {
+    // The text value has no text format assigned to it, so the user input
+    // should equal the output, including newlines.
+    return nl2br(Html::escape($item->value));
   }
 
 }

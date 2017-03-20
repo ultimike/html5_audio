@@ -1,6 +1,6 @@
 name: HTML5 Audio
 type: module
-description: HTML5 audio field formatter for link fields.
+description: HTML5 audio field formatter for Link fields
 core: 8.x
 package: Custom
 dependencies:
