@@ -16,7 +16,7 @@ function html5_audio_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.html5_audio':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('HTML5 audio field formatter for Link fields') . '</p>';
+      $output .= '<p>' . t('HTML5 audio field formatter for Link fields.') . '</p>';
       return $output;
 
     default:
