@@ -24,7 +24,6 @@ final class Html5AudioFieldFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      // Implement default settings.
       'autoplay' => '0',
     ] + parent::defaultSettings();
   }
@@ -33,13 +32,12 @@ final class Html5AudioFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $elements = parent::settingsForm($form, $form_state);
 
-    $elements['autoplay'] = array(
+    $elements['autoplay'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Autoplay enabled'),
       '#default_value' => $this->getSetting('autoplay'),
-    );
+    ];
 
     return $elements;
   }
@@ -49,15 +47,13 @@ final class Html5AudioFieldFormatter extends FormatterBase {
    */
   public function settingsSummary() {
     $summary = [];
-    // Implement settings summary.
     $settings = $this->getSettings();
     if ($settings['autoplay']) {
-      $summary[] = t('Autoplay is enabled.');
+      $summary[] = $this->t('Autoplay is enabled.');
     }
     else {
-      $summary[] = t('Autoplay is not enabled.');
+      $summary[] = $this->t('Autoplay is not enabled.');
     }
-
     return $summary;
   }
 
@@ -67,29 +63,29 @@ final class Html5AudioFieldFormatter extends FormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
 
-    foreach ($items as $delta => $item) {
-      // Get the mime type. This method for calling a service is **not** using
-      // dependency injection.
+    // Render all field values as part of a single <audio> tag.
+    $sources = [];
+    foreach ($items as $item) {
+      // Get the mime type.
       $mimetype = \Drupal::service('file.mime_type.guesser')->guess($item->uri);
-
-      $sources[] = array(
+      $sources[] = [
         'src' => $item->uri,
         'mimetype' => $mimetype,
-      );
+      ];
     }
 
-    // Configuration
+    // Configuration.
     $autoplay = '';
     if ($this->getSetting('autoplay')) {
       $autoplay = 'autoplay';
     }
 
     // Create render array for theming.
-    $elements[] = array(
+    $elements[] = [
       '#theme' => 'audio_tag',
       '#sources' => $sources,
       '#autoplay' => $autoplay,
-    );
+    ];
 
     return $elements;
   }
