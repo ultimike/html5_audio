@@ -26,7 +26,7 @@ final class Html5AudioFieldFormatter extends FormatterBase {
     return [
       // Implement default settings.
       'autoplay' => '0',
-    ) + parent::defaultSettings();
+    ] + parent::defaultSettings();
   }
 
   /**
