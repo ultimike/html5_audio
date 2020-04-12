@@ -2,23 +2,9 @@
 
 /**
  * @file
- * Contains html5_audio.module.
+ * Primary module hooks for HTML5 Audio module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
  */
-
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-function html5_audio_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the html5_audio module.
-    case 'help.page.html5_audio':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('HTML5 audio field formatter for Link fields.') . '</p>';
-      return $output;
-
-    default:
-  }
-}

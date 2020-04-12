@@ -1,7 +1,8 @@
-name: 'HTML5 Audio'
+name: HTML5 Audio
 type: module
-description: 'HTML5 audio field formatter for Link fields.'
+description: HTML5 audio field formatter for Link fields.
+package: DrupalEasy
 core: 8.x
-package: 'DrupalEasy'
+core_version_requirement: ^8 || ^9
 dependencies:
   - link

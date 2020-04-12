@@ -11,6 +11,6 @@ Download or clone this repository to a "html5_audio" folder inside your site's
 "modules" directory. Be sure the containing directory is named "html5_audio".
 
 The "master" branch contains the starting point for the exercise, useful for those without 
-access to Drupal Console. 
+access to Drupal Console or Drush. 
 
 The "complete" branch contains the completed module, based on workshop instructions.

@@ -1,0 +1,7 @@
+field.formatter.settings.html5_audio_formatter:
+  type: mapping
+  label: HTML5 Audio formatter settings
+  mapping:
+    foo:
+      type: string
+      label: Foo

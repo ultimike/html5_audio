@@ -2,17 +2,15 @@
 
 namespace Drupal\html5_audio\Plugin\Field\FieldFormatter;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Plugin implementation of the 'html5audio_field_formatter' formatter.
+ * Plugin implementation of the 'HTML5 Audio' formatter.
  *
  * @FieldFormatter(
- *   id = "html5audio_field_formatter",
+ *   id = "html5_audio_formatter",
  *   label = @Translation("HTML5 Audio"),
  *   field_types = {
  *     "link"
@@ -26,7 +24,7 @@ class Html5AudioFieldFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      // Implement default settings.
+      'foo' => 'bar',
     ] + parent::defaultSettings();
   }
 
@@ -34,18 +32,21 @@ class Html5AudioFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [
-      // Implement settings form.
-    ] + parent::settingsForm($form, $form_state);
+
+    $elements['foo'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Foo'),
+      '#default_value' => $this->getSetting('foo'),
+    ];
+
+    return $elements;
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = [];
-    // Implement settings summary.
-
+    $summary[] = $this->t('Foo: @foo', ['@foo' => $this->getSetting('foo')]);
     return $summary;
   }
 
@@ -53,28 +54,15 @@ class Html5AudioFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $elements = [];
+    $element = [];
 
     foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+      $element[$delta] = [
+        '#markup' => $item->value,
+      ];
     }
 
-    return $elements;
-  }
-
-  /**
-   * Generate the output appropriate for one field item.
-   *
-   * @param \Drupal\Core\Field\FieldItemInterface $item
-   *   One field item.
-   *
-   * @return string
-   *   The textual output generated.
-   */
-  protected function viewValue(FieldItemInterface $item) {
-    // The text value has no text format assigned to it, so the user input
-    // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
+    return $element;
   }
 
 }
