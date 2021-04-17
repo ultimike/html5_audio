@@ -6,7 +6,6 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\link\LinkItemInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Tests Html5 Audio functionality.
@@ -14,7 +13,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  * @group html5_audio
  */
 class Html5AudioTest extends BrowserTestBase {
-  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -111,7 +109,7 @@ class Html5AudioTest extends BrowserTestBase {
     $this->drupalGet('entity_test/add');
     $page->fillField("{$this->testFieldName}[0][uri]", 'http://podcasts.drupaleasy.com/DrupalEasy_ep175_20160510.ogg');
     $page->fillField("{$this->testFieldName}[1][uri]", 'https://drupaleasy.podbean.com/mf/play/g7em5f/DrupalEasy_ep175_20160510.mp3');
-    $page->pressButton($this->t('Save'));
+    $page->pressButton('Save');
 
     // Use entity query to get the ID of the just created entity.
     $entity_id = $this->container
