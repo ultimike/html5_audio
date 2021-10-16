@@ -67,7 +67,7 @@ final class Html5AudioFieldFormatter extends FormatterBase {
     $sources = [];
     foreach ($items as $item) {
       // Get the mime type.
-      $mimetype = \Drupal::service('file.mime_type.guesser')->guess($item->uri);
+      $mimetype = \Drupal::service('file.mime_type.guesser')->guessMimeType($item->uri);
       $sources[] = [
         'src' => $item->uri,
         'mimetype' => $mimetype,
