@@ -61,7 +61,7 @@ final class Html5AudioFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $element = [];
+    $elements = [];
 
     // Render all field values as part of a single <audio> tag.
     $sources = [];
