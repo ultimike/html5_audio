@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Drupal\html5_audio\Plugin\Field\FieldFormatter;
 
@@ -17,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class Html5AudioFieldFormatter extends FormatterBase {
+final class Html5AudioFieldFormatter extends FormatterBase {
 
   /**
    * {@inheritdoc}
