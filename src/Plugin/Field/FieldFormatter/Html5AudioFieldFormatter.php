@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Drupal\html5_audio\Plugin\Field\FieldFormatter;
 
@@ -49,10 +51,10 @@ final class Html5AudioFieldFormatter extends FormatterBase {
     $summary = [];
     $settings = $this->getSettings();
     if ($settings['autoplay']) {
-      $summary[] = $this->t('Autoplay is enabled.');
+      $summary[] = $this->t('Autoplay is enabled.')->render();
     }
     else {
-      $summary[] = $this->t('Autoplay is not enabled.');
+      $summary[] = $this->t('Autoplay is not enabled.')->render();
     }
     return $summary;
   }
