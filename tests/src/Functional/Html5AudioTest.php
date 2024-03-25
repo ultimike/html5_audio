@@ -2,10 +2,10 @@
 
 namespace Drupal\Tests\html5_audio\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\link\LinkItemInterface;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests Html5 Audio functionality.
@@ -20,9 +20,7 @@ class Html5AudioTest extends BrowserTestBase {
   protected $defaultTheme = 'stark';
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = [
     'entity_test',
@@ -59,24 +57,24 @@ class Html5AudioTest extends BrowserTestBase {
     // Create a machine name for the link field.
     $this->testFieldName = mb_strtolower($this->randomMachineName());
     // Create a link field for entity_test entities.
-    $this->fieldStorage = FieldStorageConfig::create([
+    $fieldStorage = FieldStorageConfig::create([
       'field_name' => $this->testFieldName,
       'entity_type' => 'entity_test',
       'type' => 'link',
       'cardinality' => 2,
     ]);
-    $this->fieldStorage->save();
+    $fieldStorage->save();
 
     // Associate the link field with an entity type bundle.
-    $this->field = FieldConfig::create([
-      'field_storage' => $this->fieldStorage,
+    $field = FieldConfig::create([
+      'field_storage' => $fieldStorage,
       'bundle' => 'entity_test',
       'settings' => [
         'title' => DRUPAL_DISABLED,
         'link_type' => LinkItemInterface::LINK_GENERIC,
       ],
     ]);
-    $this->field->save();
+    $field->save();
 
     // Set the form and view displays.
     /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $display_repository */
